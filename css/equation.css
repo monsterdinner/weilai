@@ -209,7 +209,7 @@ input, textarea, :before, :after {
     width: 128px !important;
     height: 128px !important;
     border-radius: 50%;
-    z-index:1111;
+    z-index:1;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -710,6 +710,7 @@ canvas {
     height: 100%;
     overflow: hidden;
     position: relative;
+    z-index: 100;
 }
 .figure_word{
     opacity: 1;
@@ -742,11 +743,16 @@ canvas {
     opacity: 1;
     text-align: center;
     text-transform: uppercase;
+    transition: transform 1s cubic-bezier(0.25,0.46,0.45,0.94)
 }
+
 .figure_img{
     backface-visibility: hidden;
     height: 100%;
     width: 100%;
+    transition: transform 3000ms cubic-bezier(0.4,0,0.2,1);
+    will-change:transform;
+    z-index: 1;
 }
 .figure_img.aa img{
     object-position: 50%;
@@ -770,12 +776,13 @@ canvas {
     font-size: 16px;
     color: #fff;
     font-weight: 100;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     line-height: 1.5;
     opacity: 0;
     position: relative;
     text-align: center;
     text-transform: uppercase;
+    transition: opacity 150ms cubic-bezier(0.455,0.03,0.515,0.955);
 }
 .figure_over>span::after {
     background-color: #00bebe;
@@ -787,7 +794,7 @@ canvas {
     opacity: 0;
     position: absolute;
     transform: scale(0);
-    transition: opacity 300ms cubic-bezier(0.455,0.03,0.515,0.955),transform 500ms cubic-bezier(0.455,0.03,0.515,0.955) 150ms,-webkit-transform 500ms cubic-bezier(0.455,0.03,0.515,0.955) 150ms;
+    transition: opacity 300ms cubic-bezier(0.455,0.03,0.515,0.955),transform 500ms cubic-bezier(0.455,0.03,0.515,0.955) 150ms;
     width: 100%;
 }
 .racing{
@@ -796,6 +803,20 @@ canvas {
     height: calc(100vh - 60px);
     overflow: hidden;
     width: 100%;
+}
+.figure:after{
+    background-color: #000;
+    content: '';
+    height: 100%;
+    width: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition:opacity 1s ease;
+}
+.renwub:after{
+    opacity: 0.8!important;
 }
 .racing_img{
     opacity: 1;
@@ -832,7 +853,10 @@ canvas {
     line-height: 48px;
     font-family: "BlueSkyLight", "Microsoft Yahei", Palatino, Arial, sans-serif;
 }
-
+.xiabiao:after{
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
 .racing_word p{
     font-size: 19px;
     font-weight: 100;
@@ -931,6 +955,8 @@ canvas {
     float: left;
     width: 50%;
     overflow: hidden;
+    left: 90px;
+    position: relative;
 }
 .next-race{
     text-align: left;
@@ -981,8 +1007,9 @@ a{
     position: absolute;
     background: #00bebe;
 }
-.highlighted{
-
+ .wrapper .dot.highlighted {
+    box-shadow: 0 0 0 15px rgba(42,211,199,0.3);
+    transition: all .5s linear;
 }
 .season{
     clear: both;
@@ -995,7 +1022,12 @@ a{
     margin-bottom: 10px;
     font-weight: 100;
 }
-
+.inbot{
+    border-color:#00bebe !important;
+}
+.roundcolor{
+    color:  #00bebe;
+}
 #racing-season .locations .race{
     width: 25%;
     float: left;
@@ -1018,6 +1050,11 @@ a{
     font-size: 16px;
     line-height: 26px;
     font-weight: 100;
+}
+.racing_word a:hover{
+    background: #000;
+    color: #fff;
+    transition: 0.5s all ease;
 }
  .related-news {
     background-color: #fff;
@@ -1224,7 +1261,8 @@ a{
 }
 .footer{
     position: relative;
-    top:1050px;
+    top: 1870px;
+    font-size: 13px;
 }
 .more{
     padding: 2%;
@@ -1263,6 +1301,7 @@ a{
     flex-wrap: wrap;
     margin: 0 auto;
     width: 100%;
+    position: absolute;
 }
 .more-r{
     position: relative;
@@ -1270,7 +1309,7 @@ a{
 }
 .mores-rrr{
     position: relative;
-    top: 140px ;
+    top: 450px ;
 }
 .more-img img{
     opacity: 0.3 !important;
@@ -1285,9 +1324,33 @@ a{
     padding: 2%;
     text-align: center;
     background-color: #fff;
-    font-size: 18px;
+    font-size: 16px;
+}
+
+.more-item{
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+}
+.more-item img{
+    max-width: 100%;
 }
 .bg-white a{
     color: #000;
     text-decoration: underline;
+    z-index: 999;
+}
+.news-title a:hover{
+    text-decoration: underline;
+}
+.xixian{
+    border-bottom: 1px solid #13d4c8;
+    padding-bottom: 5px;
+}
+.track_more a:hover{
+    border-color: #00263c;
+    background: #00263c;
+    color: #fff;
 }
