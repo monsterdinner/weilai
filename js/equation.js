@@ -180,15 +180,81 @@ getTime();
 
 //人物
 $(".figure").mouseover(function(){
-    $(this).children(".figure_img").css("transform","scale(1.1)");
-    $(this).find(".figure_text").css("transform","translateY(-33px)");
+    $(this).find(".yichu").css("transform","scale(1.1)");
+    $(this).find(".fudong").css("transform","translateY(-33px)");
     $(this).find(".figure_over").children("span").css("opacity","1");
     $(this).find(".figure_over").children("span").addClass("xiabiao");
-    $(this).siblings().addClass("renwub");
+    $(this).siblings().find(".figure_img").addClass("renwub");
 });
 $(".figure").mouseout(function(){
-    $(this).children(".figure_img").css("transform","scale(1)");
+     $(this).find(".yichu").css("transform","scale(1)");
     $(this).find(".figure_text").css("transform","translateY(0)");
     $(this).find(".figure_over").children("span").css("opacity","0");
-    $(this).siblings().removeClass("renwub");
+    $(this).find(".figure_over").children("span").removeClass("xiabiao");
+    $(this).siblings().find(".figure_img").removeClass("renwub");
 });
+$(".scrollbox-close-btn").on("click",function () {
+    $(this).parent(".figure").removeClass("scrollbox-open");
+    //$(this).parents(".figure").removeClass("scrollbox-open");
+    //$(this).parents(".figure").find(".scrollbox-content").css("display","none");
+    //$(this).parents(".figure").find(".figure_over").css("display","block");
+    //$(this).parents(".figure").find(".figure_text").removeClass("scrollbox-title-bigger");
+    //$(this).parents(".figure").find(".figure_text").addClass("fudong");
+    //$(this).parents(".figure").find(".scrollbox-intro").css("transform","translate(0,0) matrix(1, 0, 0, 1, 0, 0)");
+    //$(this).parents(".figure").find(".figure_img").css("transform","translate(0%, 0%) matrix(1, 0, 0, 1, 0, 0)");
+    //$(this).parents(".figure").find(".scrollbox-content").css("transform","translate(0%, 0%) matrix(1, 0, 0, 1, 0, 0)");
+    //$(this).parents(".figure").find(".figure_word").css("transform","matrix(1, 0, 0, 1, 0, 134.13)");
+});
+$(".figure").click(function(){
+   //滚动条跳转
+    $(this).siblings().find(".figure_img").addClass("yichu");
+    $(this).find(".figure_img").removeClass("yichu");
+    var target_top = $(".figures").offset().top;
+    $("html,body").animate({scrollTop: target_top-60}, 1000);  //带滑动效果的跳转
+    //滚动条消失
+
+    //打开，关闭
+    $(this).addClass("scrollbox-open");
+    $(this).siblings().removeClass("scrollbox-open");
+    //显示内容，隐藏内容
+    $(this).siblings().find(".scrollbox-content").css("display","none");
+    $(this).find(".scrollbox-content").css("display","block");
+    //显示X图标
+    //$(this).siblings().find(".scrollbox-close-btn").css("opacity","0");
+    //$(this).find(".scrollbox-close-btn").css("opacity","1");
+    //隐藏“车手简介”
+    $(this).siblings().find(".figure_over").css("display","block");
+    $(this).find(".figure_over").css("display","none");
+    //放大name，删除浮动类名
+    $(this).siblings().find(".figure_text").removeClass("scrollbox-title-bigger");
+    $(this).find(".figure_text").addClass("scrollbox-title-bigger");
+    $(this).siblings().find(".figure_text").addClass("fudong");
+    $(this).find(".figure_text").removeClass("fudong");
+    //调整背景位置
+    $(this).siblings().find(".scrollbox-intro").css("transform","translate(0,0) matrix(1, 0, 0, 1, 0, 0)");
+    $(this).find(".scrollbox-intro").css("transform","translate(0%, -50%) matrix(1, 0, 0, 1, 0, 0)");
+    //缩小图片
+    $(this).siblings().find(".figure_img").css("transform","translate(0%, 0%) matrix(1, 0, 0, 1, 0, 0)");
+    $(this).find(".figure_img").css("transform","translate(0%, 25%) matrix(1, 0, 0, 1, 0, 0)" );
+    //调整文字位置
+    $(this).siblings().find(".scrollbox-content").css("transform","translate(0%, 0%) matrix(1, 0, 0, 1, 0, 0)");
+    $(this).find(".scrollbox-content").css("transform","translate(0%, -31%) matrix(1, 0, 0, 1, 0, 0)");
+    //调整标题位置
+    $(this).siblings().find(".figure_word").css("transform","matrix(1, 0, 0, 1, 0, 134.13)");
+    $(this).find(".figure_word").css("transform","matrix(1, 0, 0, 1, 0, 134.13)");
+    //删除透明遮罩
+    $(this).siblings().removeClass("zhezhao");
+    $(this).addClass("zhezhao");
+});
+////X按钮
+
+    $(".scrollbox-close-btn").on("mouseover", function () {
+        $(this).find(".close-button__message").css("width","70px");
+        $(this).find(".close-button__message>span").css("opacity","1");
+    });
+$(".scrollbox-close-btn").on("mouseout", function () {
+    $(this).find(".close-button__message").css("width","0px");
+    $(this).find(".close-button__message>span").css("opacity","0");
+});
+//点击close
+
